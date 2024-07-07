@@ -28,7 +28,7 @@ jobs:
         with:
           file_path: "package.json"
         
-       - name: Build package
+      - name: Build package
         run: |
           mkdir ./build
           npm ci
