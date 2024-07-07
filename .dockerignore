@@ -1,0 +1,10 @@
+node_modules/
+dev/
+build/
+.github/
+.env
+CHANGELOG.md
+.gitattributes
+.npmignore
+.npmrc
+.gitignore

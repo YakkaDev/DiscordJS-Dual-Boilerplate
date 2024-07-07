@@ -1,0 +1,47 @@
+{
+	"name": "@YakkaDev/discordjs",
+	"version": "0.0.0",
+	"description": "CJS + ESM boilerplate for new discord.js applications.",
+	"keywords": [ "discord.js", "boilerplate", "CJS",  "ESM" ],
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"test": "node ./dev/healtcheck.js",
+		"push": "node ./dev/push.js",
+		"pull": "node ./dev/pull.js",
+		"prepack": "npmignore --auto"
+	},
+	"type": "module",
+	"exports": {
+		"import": "./lib/ESModule/index.mjs",
+		"require": "./lib/CommonJS/index.cjs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YakkaDev/DiscordJS-Dual-Boilerplate.git",
+		"directory": "."
+	},
+	"bugs": {
+		"url": "https://github.com/YakkaDev/DiscordJS-Dual-Boilerplate/issues",
+		"email": "admin@hostlike.pro"
+	},
+	"homepage": "https://github.com/YakkaDev/DiscordJS-Dual-Boilerplate#readme",
+	"private": "false",
+	"author": "Illia Korovin <admin@hostlike.pro> (https://github.com/YakkaDev/)",
+	"license": "ISC",
+	"engines": {
+		"node": "19.7.0",
+		"npm": "9.5.0"
+	},
+	"devDependencies": {
+		"dotenv": "^16.4.5",
+		"npmignore": "^0.3.1"
+	},
+	"dependencies": {
+		"discord.js": "^14.15.3",
+		"fs-extra": "^11.2.0"
+	},
+	"publishConfig": {
+		"ignore": [ "build/", "dev/", "CHANGELOG.md", ".github/", ".env", ".gitattributes", "Dockerfile", ".dockerignore" ]
+	}
+}

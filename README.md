@@ -1,2 +1,9 @@
-# Discord Devbot
- A bot designed to help developers with routine testing tasks. Can be used like boilerplate for new discord.js applications.
+![Build](https://github.com/YakkaDev/DiscordJS-Dual-Boilerplate/actions/workflows/heathcheck.yml/badge.svg?workflow_dispatch)
+
+# DiscordJS /dev/bot
+ 
+## Module Systems
+### CommonJS (CJS)
+
+
+### ECMAScript (ESM)

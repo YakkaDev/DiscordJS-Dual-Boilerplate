@@ -1,0 +1,29 @@
+name: Publish package to GitHub Packages
+on:
+  workflow_dispatch: ~
+  
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '19.7.0'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@YakkaDev'
+          
+      - name: Get Package.Json
+        id: json_properties
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "package.json"
+          
+      - run: npm ci
+      - run: npm publish ./build/YakkaDev-${{ steps.json_properties.outputs.name }}-${{ steps.json_properties.outputs.version }}.tgz --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ALL_TOKEN }}
