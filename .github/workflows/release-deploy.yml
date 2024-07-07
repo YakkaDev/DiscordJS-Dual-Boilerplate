@@ -19,7 +19,7 @@ jobs:
           
       - name: Build project
         run: |
-          zip -r ./build/${{ steps.json_properties.outputs.name }}-${{ steps.json_properties.outputs.version }} ./* -x "node_modules" -x ".git*" -x "build"
+          zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip ./* -x "node_modules" -x ".git*" -x "build"
       
       - name: Create Release
         id: create_release
@@ -40,6 +40,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ALL_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/${{ steps.json_properties.outputs.name }}-${{ steps.json_properties.outputs.version }}.zip
-          asset_name: ${{ steps.json_properties.outputs.name }}-${{ steps.json_properties.outputs.version }}.zip
+          asset_path: ./build/Source-${{ steps.json_properties.outputs.version }}.zip
+          asset_name: Source-${{ steps.json_properties.outputs.version }}.zip
           asset_content_type: application/zip
