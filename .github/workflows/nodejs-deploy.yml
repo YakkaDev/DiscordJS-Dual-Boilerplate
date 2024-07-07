@@ -28,9 +28,13 @@ jobs:
         with:
           file_path: "package.json"
         
-      - run: npm ci
-      - run: npm pack
-      - run: npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
+       - name: Build package
+        run: |
+          mkdir ./build
+          npm ci
+          npm pack
+          npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
+          rm -rf ./build
       
         env:
           NODE_AUTH_TOKEN: ${{ secrets.ALL_TOKEN }}

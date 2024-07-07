@@ -23,9 +23,9 @@ jobs:
         with:
           path: "CHANGELOG.md"
           
-      - name: Build project
+      - name: Build release
         run: |
-          mkdir build
+          mkdir ./build
           zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip . -x node_modules/\* -x .git/\* -x .github/\* -x build/\* -x \*.zip -x \*.tgz
       
       - name: Create Release
@@ -50,3 +50,5 @@ jobs:
           asset_path: ./build/Source-${{ steps.json_properties.outputs.version }}.zip
           asset_name: Source-${{ steps.json_properties.outputs.version }}.zip
           asset_content_type: application/zip
+
+      - run: rm -rf ./build
