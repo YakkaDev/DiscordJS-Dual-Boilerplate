@@ -26,7 +26,6 @@
 		"email": "admin@hostlike.pro"
 	},
 	"homepage": "https://github.com/YakkaDev/DiscordJS-Dual-Boilerplate#readme",
-	"private": "false",
 	"author": "Illia Korovin <admin@hostlike.pro> (https://github.com/YakkaDev/)",
 	"license": "ISC",
 	"engines": {
