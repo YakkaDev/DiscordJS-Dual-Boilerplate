@@ -1,4 +1,4 @@
-name: Pushing Release
+name: Publish release to GitHub
 
 on:
   workflow_dispatch: ~
@@ -8,7 +8,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@master
     
       - name: Get Package.Json
@@ -17,9 +17,16 @@ jobs:
         with:
           file_path: "package.json"
           
+      - name: Read Changelog.MD
+        id: read_changelog
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "CHANGELOG.md"
+          
       - name: Build project
         run: |
-          zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip ./* -x "node_modules" -x ".git*" -x "build"
+          mkdir build
+          zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip . -x node_modules/\* -x .git/\* -x build/\* -x \*.zip -x \*.tgz
       
       - name: Create Release
         id: create_release
@@ -29,7 +36,7 @@ jobs:
         with:
           tag_name: v${{ steps.json_properties.outputs.version }}
           release_name: Release v${{ steps.json_properties.outputs.version }}
-          body: soon
+          body: ${{ steps.read_changelog.outputs.contents }}
           draft: false
           prerelease: false
           

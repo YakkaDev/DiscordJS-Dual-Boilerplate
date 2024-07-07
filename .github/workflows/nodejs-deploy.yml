@@ -1,6 +1,8 @@
 name: Publish package to GitHub Packages
+
 on:
-  workflow_dispatch: ~
+  release:
+    types: [published]
   
     
 jobs:
@@ -10,7 +12,10 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: Checkout repository
       - uses: actions/checkout@v4
+      
+      - name: Use Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: '19.7.0'
@@ -22,8 +27,12 @@ jobs:
         uses: ActionsTools/read-json-action@main
         with:
           file_path: "package.json"
+        
+      - name: Build NPM package
+        run: |
+          npm ci
+          npm pack
+          npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
           
-      - run: npm ci
-      - run: npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.ALL_TOKEN }}
