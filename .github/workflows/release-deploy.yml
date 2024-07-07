@@ -26,7 +26,7 @@ jobs:
       - name: Build project
         run: |
           mkdir build
-          zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip . -x node_modules/\* -x .git/\* -x build/\* -x \*.zip -x \*.tgz
+          zip -r ./build/Source-${{ steps.json_properties.outputs.version }}.zip . -x node_modules/\* -x .git/\* -x .github/\* -x build/\* -x \*.zip -x \*.tgz
       
       - name: Create Release
         id: create_release

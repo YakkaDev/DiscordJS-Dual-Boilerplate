@@ -14,7 +14,4 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '19.7.0'
-          
-      - name: Running heathcheck
-        run: |
-          npm ci
+      - run: npm ci

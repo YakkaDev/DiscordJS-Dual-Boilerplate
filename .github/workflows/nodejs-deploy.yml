@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
       - uses: actions/checkout@v4
-      
+
       - name: Use Node.js
       - uses: actions/setup-node@v4
         with:
@@ -28,11 +28,9 @@ jobs:
         with:
           file_path: "package.json"
         
-      - name: Build NPM package
-        run: |
-          npm ci
-          npm pack
-          npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
-          
+      - run: npm ci
+      - run: npm pack
+      - run: npm publish ./build/YakkaDev-discordjs-${{ steps.json_properties.outputs.version }}.tgz --access public
+      
         env:
           NODE_AUTH_TOKEN: ${{ secrets.ALL_TOKEN }}
